@@ -7,7 +7,7 @@ static void testKmpAlgo()
 {
     std::string sLine = "aaaaaab";
     std::string sPattern = "aaab";
-    int32_t iMatchIdx = Dalgo::findFirstMatchWithKmp(sLine, sPattern);
+    int32_t iMatchIdx = Dalgo::findFirstMatchWithKmp(sPattern, sLine);
     std::cout << iMatchIdx << std::endl;
 }
 

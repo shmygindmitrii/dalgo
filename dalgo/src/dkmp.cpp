@@ -1,7 +1,7 @@
 ﻿#include "dkmp.h"
 #include <cassert>
 
-void Dalgo::constructPrefixForKmp(std::vector<int32_t>& vLps, std::string& sPattern)
+void Dalgo::constructPrefixForKmp(std::string& sPattern, std::vector<int32_t>& vLps)
 {
     assert(vLps.size() == sPattern.size());
     vLps[0] = 0;
@@ -27,10 +27,10 @@ void Dalgo::constructPrefixForKmp(std::vector<int32_t>& vLps, std::string& sPatt
     }
 }
 
-int32_t Dalgo::findFirstMatchWithKmp(std::string& sText, std::string& sPattern)
+int32_t Dalgo::findFirstMatchWithKmp(std::string& sPattern, std::string& sText)
 {
     std::vector<int32_t> vLps(sPattern.size(), 0);
-	constructPrefixForKmp(vLps, sPattern);
+	constructPrefixForKmp(sPattern, vLps);
 	size_t zPatLen = sPattern.size();
 	size_t zPatIdx = 0;
 	int32_t iTextLen = sText.size();

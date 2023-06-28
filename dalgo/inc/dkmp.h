@@ -4,6 +4,6 @@
 
 namespace Dalgo
 {
-    void constructPrefixForKmp(std::vector<int32_t>& vLps, std::string& sPattern);
-    int32_t findFirstMatchWithKmp(std::string& sText, std::string& sPattern);
+    void constructPrefixForKmp(std::string& sPattern, std::vector<int32_t>& vLps);
+    int32_t findFirstMatchWithKmp(std::string& sPattern, std::string& sText);
 }
