@@ -5,19 +5,19 @@ void Dalgo::constructPrefixForKmp(std::vector<int32_t>& vLps, std::string& sPatt
 {
     assert(vLps.size() == sPattern.size());
     vLps[0] = 0;
-    size_t zPatternMatchIdx = 0;
+    size_t zPatternMatchLen = 0;
 	int32_t iLpsIdx = 1;
     while (iLpsIdx < sPattern.size())
     {
-        if (sPattern[iLpsIdx] == sPattern[zPatternMatchIdx])
+        if (sPattern[iLpsIdx] == sPattern[zPatternMatchLen])
         {
-            vLps[iLpsIdx++] = ++zPatternMatchIdx;
+            vLps[iLpsIdx++] = ++zPatternMatchLen;
         }
         else
         {
-            if (zPatternMatchIdx > 0)
+            if (zPatternMatchLen > 0)
             {
-                zPatternMatchIdx = vLps[zPatternMatchIdx - 1];
+				zPatternMatchLen = vLps[zPatternMatchLen - 1];
             }
             else
             {
