@@ -21,3 +21,5 @@ target_include_directories( Dalgo
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
+
+target_compile_definitions( Dalgo PUBLIC VERBOSE_OUTPUT )

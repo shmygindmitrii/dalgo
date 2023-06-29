@@ -5,8 +5,8 @@ using namespace std;
 
 static void testKmpAlgo()
 {
-    std::string sLine = "aaaaaab";
-    std::string sPattern = "aaab";
+    std::string sLine = "absabcabadageh";
+    std::string sPattern = "abcaba";
     int32_t iMatchIdx = Dalgo::findFirstMatchWithKmp(sPattern, sLine);
     std::cout << iMatchIdx << std::endl;
 }

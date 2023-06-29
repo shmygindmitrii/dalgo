@@ -1,5 +1,8 @@
 ﻿#include "dkmp.h"
 #include <cassert>
+#if VERBOSE_OUTPUT
+#include <iostream>
+#endif
 
 void Dalgo::constructPrefixForKmp(std::string& sPattern, std::vector<int32_t>& vLps)
 {
@@ -37,6 +40,9 @@ int32_t Dalgo::findFirstMatchWithKmp(std::string& sPattern, std::string& sText)
 	int32_t iTexIdx = 0;
 	while (zPatIdx < zPatLen && iTexIdx < iTextLen)
 	{
+#if VERBOSE_OUTPUT
+		std::cout << "compare sText[" << iTexIdx << "] = " << sText[iTexIdx] << " and sPattern[" << zPatIdx << "] = " << sPattern[zPatIdx] << std::endl;
+#endif
 		if (sPattern[zPatIdx] == sText[iTexIdx])
 		{
 			if (zPatIdx == zPatLen - 1)
