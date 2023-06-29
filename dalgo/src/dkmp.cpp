@@ -38,10 +38,13 @@ int32_t Dalgo::findFirstMatchWithKmp(std::string& sPattern, std::string& sText)
 	size_t zPatIdx = 0;
 	int32_t iTextLen = sText.size();
 	int32_t iTexIdx = 0;
+#if VERBOSE_OUTPUT
+	int32_t iCompareIdx = 1;
+#endif
 	while (zPatIdx < zPatLen && iTexIdx < iTextLen)
 	{
 #if VERBOSE_OUTPUT
-		std::cout << "compare sText[" << iTexIdx << "] = " << sText[iTexIdx] << " and sPattern[" << zPatIdx << "] = " << sPattern[zPatIdx] << std::endl;
+		std::cout << "compare " << iCompareIdx++ << ": sText[" << iTexIdx << "] = " << sText[iTexIdx] << " and sPattern[" << zPatIdx << "] = " << sPattern[zPatIdx] << std::endl;
 #endif
 		if (sPattern[zPatIdx] == sText[iTexIdx])
 		{
@@ -69,6 +72,39 @@ int32_t Dalgo::findFirstMatchWithKmp(std::string& sPattern, std::string& sText)
 				iTexIdx++;
 			}
 		}
+	}
+	return -1;
+}
+
+int32_t Dalgo::findFirstMatchingNaive(std::string& sPattern, std::string& sText)
+{
+	if (sText.size() < sPattern.size()) return -1;
+	int32_t iTexIdx = 0;
+	int32_t iPatIdx = 0;
+#if VERBOSE_OUTPUT
+	int32_t iCompareIdx = 1;
+#endif
+	while (iTexIdx < sText.size() - sPattern.size() + 1)
+	{
+		int iTexCurIdx = iTexIdx;
+		while (iTexCurIdx < sText.size() && iPatIdx < sPattern.size())
+		{
+#if VERBOSE_OUTPUT
+			std::cout << "compare " << iCompareIdx++ << ": sText[" << iTexCurIdx << "] = " << sText[iTexCurIdx] << " and sPattern[" << iPatIdx << "] = " << sPattern[iPatIdx] << std::endl;
+#endif
+			if (sText[iTexCurIdx] == sPattern[iPatIdx])
+			{
+				iTexCurIdx++;
+				iPatIdx++;
+			}
+			else
+			{
+				iPatIdx = 0;
+				break;
+			}
+		}
+		if (iPatIdx == sPattern.size()) return iTexIdx;
+		iTexIdx++;
 	}
 	return -1;
 }
